@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: instance
+# key: instance
+# expand-env: ((yas-indent-line 'fixed))
+# --
+instance ${1:$(downcase yas-text)}$2 :: ${1:class} ${2:type} where
+$0

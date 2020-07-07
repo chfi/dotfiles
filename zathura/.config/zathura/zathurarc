@@ -1,0 +1,11 @@
+# Use ctrl-c/v clipboard rather than middle-click
+set selection-clipboard clipboard
+
+# set zoom-center true
+set scroll-step 100
+
+set recolor-darkcolor "#BCBCBC"
+set recolor-lightcolor "#101010"
+set recolor-keephue true
+
+set selection-clipboard "clipboard"

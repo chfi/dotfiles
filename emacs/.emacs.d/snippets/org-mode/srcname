@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: SRCNAME
+# key: sn:
+# expand-env: ((yas-indent-line 'fixed))
+# --
+#+SRCNAME: $1
+$0

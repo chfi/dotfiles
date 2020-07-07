@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Insert source code block
+# key: #src
+# expand-env: ((yas-indent-line 'fixed))
+# --
+#+NAME: block:$1
+#+BEGIN_SRC $2
+$0
+#+END_SRC

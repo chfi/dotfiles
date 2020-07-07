@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Create a single-member union type.
+# key: <:
+# expand-env: ((yas-indent-line 'fixed))
+# --
+< $1 : $2 $0>

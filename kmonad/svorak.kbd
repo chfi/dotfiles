@@ -1,0 +1,28 @@
+INPUT = LINUX_DEVICE L64 /dev/input/event3
+OUTPUT = UINPUT_SINK
+
+
+
+@ao = o
+@ae = a
+@oo = o
+
+
+SRC
+  esc  f1 f2 f3 f4 f5 f6 f7 f8 f9 f10  f11  f12 home end ins del
+  grv   1   2   3   4   5   6   7   8   9   0   -   grv  bspc
+  tab    q   w   e   r   t   y   u   i   o   p   [   ]   ret
+  caps    a   s   d   f   g   h   j   k   l   '   '   *  ret
+  lsft  <   z   x   c   v   b   n   m   ,   .   -        rsft
+  lctl    lmet lalt        spc        ralt prtsc rctl pgup up pgdn
+                                                      lft down rght
+
+
+LAYER svorak
+  esc  f1 f2 f3 f4 f5 f6 f7 f8 f9 f10  f11  f12 home end ins del
+  grv   1   2   3   4   5   6   7   8   9   0   +   grv  bspc
+  tab    @ao @ae @oo p   y   f   g   c   r   l   ,   /   ret
+  caps    a   o   e   u   i   d   h   t   n   s   -   '  ret
+  lsft  <   .   q   j   k   x   b   m   w   v   z        rsft
+  lctl    lmet lalt        spc        ralt prtsc rctl pgup up pgdn
+                                                      lft down rght

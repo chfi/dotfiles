@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: extension
+# key: lang
+# --
+{-# LANGUAGE ${1:GHC extension} #-}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: derive
+# key: derive
+# expand-env: ((yas-indent-line 'fixed))
+# --
+derive instance ${1:$(downcase yas-text)}$2 :: ${1:class} ${2:type}
+$0

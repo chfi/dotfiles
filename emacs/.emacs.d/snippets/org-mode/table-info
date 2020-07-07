@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Add table name
+# key: nt:
+# expand-env: ((yas-indent-line 'fixed))
+# --
+#+NAME: table:$1

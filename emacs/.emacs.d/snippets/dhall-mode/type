@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: type
+# key: type
+# expand-env: ((yas-indent-line 'fixed))
+# --
+\\($1 : Type)

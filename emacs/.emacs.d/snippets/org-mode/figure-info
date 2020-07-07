@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Add figure name
+# key: nf:
+# expand-env: ((yas-indent-line 'fixed))
+# --
+#+NAME: figure:$1

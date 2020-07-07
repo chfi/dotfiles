@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Add code block name
+# key: nb:
+# expand-env: ((yas-indent-line 'fixed))
+# --
+#+NAME: block:$1
+#+CAPTION: $2

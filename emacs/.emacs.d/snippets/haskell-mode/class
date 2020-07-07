@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: class
+# key: class
+# expand-env: ((yas-indent-line 'fixed))
+# --
+class ${1:Name} where
+$0

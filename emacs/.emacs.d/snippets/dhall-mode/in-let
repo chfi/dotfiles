@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: in-let
+# key: in-let
+# expand-env: ((yas-indent-line 'fixed))
+# --
+in  let $1 = $0
