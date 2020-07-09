@@ -139,6 +139,16 @@
   :init
   (setq-default counsel-find-file-at-point t))
 
+(use-package deadgrep
+  :config
+  (general-define-key
+   :states 'normal
+   :keymaps 'deadgrep-mode-map
+   "o" 'deadgrep-visit-result-other-window
+   "O" 'deadgrep-visit-result
+   "q" 'quit-window))
+
+
 (use-package default-text-scale
   :init
   (default-text-scale-mode))
@@ -560,7 +570,7 @@
 
 ;; replace default keybindings to use ivy & co
 (general-define-key
-  "C-s"     'swiper
+  "C-s"     #'deadgrep
   "M-x"     'counsel-M-x
   "<f1> f"  'counsel-describe-function
   "<f1> v"  'counsel-describe-variable
@@ -856,12 +866,16 @@
 (use-package org-journal
   :ensure t
   :defer t
+  :init
+  (add-hook 'org-journal-after-entry-create-hook
+            'evil-insert-state)
   :config
   (setq org-journal-dir "~/Sync/org/journal/"
         org-journal-date-format "%Y-%m-%d %A"
         org-journal-file-type 'monthly
         org-journal-file-format "%Y-%m.org"
-        org-journal-file-header "#+TITLE: %Y-%m\n#+STARTUP: overview\n"))
+        org-journal-file-header "#+TITLE: %Y-%m\n#+STARTUP: overview\n"
+        org-journal-hide-entries-p nil))
 
 (general-define-key
  :states 'normal
