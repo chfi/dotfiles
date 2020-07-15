@@ -630,7 +630,8 @@
 
 ;; Nicer bindings for moving thru & dispatching ivy actions
 (general-define-key
-  :keymaps 'ivy-minibuffer-map
+ :keymaps '(ivy-minibuffer-map
+            ivy-switch-buffer-map)
   "C-j" 'ivy-next-line
   "C-k" 'ivy-previous-line
   "C-'" 'ivy-avy
@@ -870,7 +871,8 @@
   (add-hook 'org-journal-after-entry-create-hook
             'evil-insert-state)
   :config
-  (setq org-journal-dir "~/Sync/org/journal/"
+;; (org-roam-directory (concat org-directory "roam/"))
+  (setq org-journal-dir (concat org-roam-directory "journal/")
         org-journal-date-format "%Y-%m-%d %A"
         org-journal-file-type 'monthly
         org-journal-file-format "%Y-%m.org"
