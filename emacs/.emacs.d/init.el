@@ -874,6 +874,8 @@
 ;; (org-roam-directory (concat org-directory "roam/"))
   (setq org-journal-dir (concat org-roam-directory "journal/")
         org-journal-date-format "%Y-%m-%d %A"
+        org-journal-time-format "[%Y-%m-%d %a %H:%M]"
+        org-journal-time-prefix ""
         org-journal-file-type 'monthly
         org-journal-file-format "%Y-%m.org"
         org-journal-file-header "#+TITLE: %Y-%m\n#+STARTUP: overview\n"
