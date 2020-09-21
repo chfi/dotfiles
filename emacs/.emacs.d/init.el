@@ -180,7 +180,8 @@
   (general-define-key
    :states 'normal
    "SPC" 'evil-scroll-down
-   "S-SPC" 'evil-scroll-up))
+   "S-SPC" 'evil-scroll-up
+   "C-e" 'evil-jump-forward))
 
 (use-package evil-collection
   :after evil
@@ -303,6 +304,8 @@
     "C-c C-b" 'ivy-bibtex)
   (setq ivy-bibtex-default-action 'ivy-bibtex-insert-citation))
 
+
+
 ;; (use-package jq-mode
 ;;   :defer t
 ;;   :commands 'jq-mode
@@ -311,6 +314,39 @@
 (use-package julia-mode
   :defer t
   )
+
+
+;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+(setq lsp-keymap-prefix "s-l")
+
+(use-package lsp-mode
+    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+            ;; (rust-mode . lsp)
+            ;; if you want which-key integration
+            (lsp-mode . lsp-enable-which-key-integration))
+    :commands lsp)
+
+
+
+;; optionally
+(use-package lsp-ui :commands lsp-ui-mode)
+
+;; ;; if you are helm user
+;; (use-package helm-lsp :commands helm-lsp-workspace-symbol)
+
+;; if you are ivy user
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+;; (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+;; optionally if you want to use debugger
+(use-package dap-mode)
+;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+
+;; optional if you want which-key integration
+(use-package which-key
+    :config
+    (which-key-mode))
+
 
 (use-package lua-mode
   :init
@@ -843,8 +879,8 @@
   ;; my own creation~~
   ;; (require 'ob-dhall)
 
-  (setq org-src-tab-acts-natively t)
-  (setq org-src-preserve-indentation t)
+  ;; (setq org-src-tab-acts-natively t)
+  ;; (setq org-src-preserve-indentation t)
 
 
 
@@ -881,20 +917,36 @@
         org-journal-file-header "#+TITLE: %Y-%m\n#+STARTUP: overview\n"
         org-journal-hide-entries-p nil))
 
+
+
+(use-package deft
+  :custom
+  (deft-directory (concat org-directory "roam/")))
+  ;; :bind* (:map deft-mode-map
+  ;;              (("o" . deft-open-file-other-window))))
+               ;; ("C-a" . org-roam-open-at-point))))
+               ;; ("C-a" 'org-roam-open-at-point))))
+
+(general-define-key
+ :states 'normal
+ :keymaps 'deft-mode-map
+ "o" 'deft-open-file-other-window)
+
+
 (general-define-key
  :states 'normal
  :keymaps 'global
- "C-c C-j" 'org-journal-new-entry)
-
+ "C-c C-j" 'org-journal-new-entry
+ "C-d" 'deft)
 
 (use-package org-roam
-      :hook
-      (after-init . org-roam-mode)
-      :custom
-      (org-roam-directory (concat org-directory "roam/"))
-      (org-roam-graph-exclude-matcher '("private"))
-      (org-roam-completion-system 'ivy)
-      :bind (:map org-roam-mode-map
+  :hook
+  (after-init . org-roam-mode)
+  :custom
+  (org-roam-directory (concat org-directory "roam/"))
+  (org-roam-graph-exclude-matcher '("private"))
+  (org-roam-completion-system 'ivy)
+  :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)
                ("C-c n b" . org-roam-switch-to-buffer)
@@ -1287,7 +1339,8 @@ buffer is not visiting a file."
  '(ansi-color-names-vector
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
  '(avy-keys (quote (97 111 101 117 105 104 116 110 115)))
- '(browse-url-browser-function (quote browse-url-firefox))
+ '(browse-url-browser-function (quote browse-url-chromium))
+ '(browse-url-chromium-program "brave-browser")
  '(cider-show-error-buffer nil)
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
