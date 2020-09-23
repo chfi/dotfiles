@@ -84,55 +84,16 @@
   (:keymaps 'override
    "s-n" 'ace-window))
 
-;; (use-package clojure-mode)
-  ;; :init
-  ;; (add-hook 'clojure-mode-hook 'lispy-mode))
-
-;; (use-package cider
-;;   :after clojure-mode
-;;   :init
-;;   (add-hook 'clojure-mode-hook 'cider-mode)
-;;   ;; (add-hook 'cider-mode-hook 'lispy-mode)
-;;   ;; (add-hook 'cider-repl-mode-hook 'lispy-mode)
-;;   (with-eval-after-load 'evil
-;;     (evil-set-initial-state 'cider-repl-mode 'emacs))
-;;   :general
-;;   (:states '(normal insert)
-;;            :keymaps 'clojure-mode-map
-;;            "C-c C-z" 'cider-switch-to-repl-buffer
-;;            "C-c C-k" 'cider-eval-buffer
-;;            ;; "s-o"     'cider-find-dwim
-;;            ;; "s-O"     'cider-find-dwim-other-window
-;;            )
-;;   (:states '(emacs)
-;;            :keymaps 'cider-repl-mode-map
-;;            "C-j" 'cider-repl-forward-input
-;;            "C-k" 'cider-repl-backward-input)
-;;   (:states '(normal emacs)
-;;           :keymaps 'cider-browse-ns-mode-map
-;;           "RET" 'cider-browse-ns-operate-at-point
-;;           "^"   'cider-browse-ns-all
-;;           "q"   'cider-popup-buffer-quit-function
-;;           "s"   'cider-browse-ns-find-at-point
-;;           ))
-
-
-
 
 (use-package company
   :diminish company-mode
   :init
   (add-hook 'prog-mode-hook 'company-mode)
-  ;; (add-hook 'org-babel
-  ;; (add-hook 'org-babely
-  ;; (add-hook 'org-mode-hook 'company-mode)
   :config
-  ;; (setq company-idle-delay 0)
   (setq company-tooltip-align-annotations t)
   :general
   (:states '(normal insert)
            "C-SPC" 'company-complete))
-           ;; "TAB" 'company-indent-or-complete-common))
 
 
 (use-package counsel
@@ -321,7 +282,7 @@
 
 (use-package lsp-mode
     :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-            ;; (rust-mode . lsp)
+            (rust-mode . lsp)
             ;; if you want which-key integration
             (lsp-mode . lsp-enable-which-key-integration))
     :commands lsp)
