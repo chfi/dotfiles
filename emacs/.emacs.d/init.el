@@ -46,9 +46,9 @@
 
 ;; Bunch of stuff better off in another file
 (setq jupiter-nix-hostname "jupiter-nix")
-(setq macbook-hostname "Christians-MacBook-Air.local")
+;; (setq macbook-hostname "Christians-MacBook-Air.local")
 
-(load-user-file "scripts/macbook.el")
+;; (load-user-file "scripts/macbook.el")
 
 ;; Can use (when (is-macbook) ..) and (text-scale-set `mul`) to change font size on laptop
 ;; (setq default-frame-alist '((font . "Source Code Pro-12")))
@@ -161,7 +161,8 @@
           flymake
           help
           ivy
-          magit))
+          magit)
+        evil-collection-company-use-tng nil)
   (evil-collection-init))
 
 (use-package evil-escape
@@ -205,9 +206,9 @@
   :config
   ;; For some reason, having flycheck check syntax every new line in purescript-mode
   ;; is very slow -- but only on nixos, not the macbook!
-  (unless (is-macbook)
+  ;; (unless (is-macbook)
     (setq flycheck-check-syntax-automatically '(save idle-change mode-enabled))
-    (setq flycheck-idle-change-delay 4.0)))
+    (setq flycheck-idle-change-delay 4.0))
 
 (use-package glsl-mode)
 
@@ -308,7 +309,6 @@
     :config
     (which-key-mode))
 
-
 (use-package lua-mode
   :init
   (setq lua-indent-level "2"))
@@ -405,15 +405,7 @@
   :defer t
   :commands 'rust-mode
   :config
-  (add-hook 'rust-mode-hook 'racer-mode)
-  (with-eval-after-load 'rust-mode
-    (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
-  (setq rust-format-on-save t)
-  :general
-  (:states '(normal insert)
-   :keymaps 'rust-mode-map
-   "C-c C-c" 'rust-compile)
-  )
+  (setq rust-format-on-save t))
 
 (use-package flycheck-rust
   :defer t
@@ -592,12 +584,12 @@
   )
 
 
-
 (general-define-key
  :states 'normal
  :keymaps 'global
  "s" 'ivy-switch-buffer
  "S" 'counsel-find-file)
+
 
 (general-define-key
  :states '(normal insert)
@@ -980,17 +972,14 @@
     (
      (org-agenda-prefix-format "%l - ")
      (org-agenda-sorting-strategy '())
-     ;; (org-agenda-remove-tags t)
-     ;; (org-agenda-sorting-strategy '(priority-down))
     ))
    ("lb" "View books" tags "CATEGORY=\"Book\""
     (
      (org-agenda-prefix-format "%l%T: ")
      (org-agenda-remove-tags t)
      (org-agenda-sorting-strategy '(priority-down))
-    ))
+    ))))
 
-   ))
 
 
 ;; config org-feed
@@ -1182,9 +1171,7 @@
       ("L" org-metaright)
       ("J" org-metadown)
       ("K" org-metaup)
-      ("t" org-todo))
-    ))
-
+      ("t" org-todo))))
 
 
 ;; ;;;;;;;;;;;;; Functions etc.
@@ -1207,7 +1194,6 @@ buffer is not visiting a file."
 
 (use-package zenburn-theme
   :init
-;; zenburn-default-colors-alist
   (load-theme #'zenburn t t))
 
 
@@ -1218,7 +1204,13 @@ buffer is not visiting a file."
   :config
   (custom-theme-set-faces
    'material
-   `(ivy-current-match
+   `(lsp-ui-sideline-code-action
+     ((,t (:background
+           "#29353a"
+           :foreground
+           "#ffffff"
+           :box (:line-width 1 :color "#bbbbbb")))))
+     `(ivy-current-match
      ((,t (:background
            "dim gray"
            :underline ,t
@@ -1255,10 +1247,8 @@ buffer is not visiting a file."
            ;; :box 1
            :overline nil
            :underline t
-           :weight bold))))
-   ))
-  ;; :custom
-  ;; (custom-theme-set-faces 'material )
+           :weight bold))))))
+
 ;; material
 
 
@@ -1324,6 +1314,7 @@ buffer is not visiting a file."
  '(hl-sexp-background-color "#1c1f26")
  '(ivy-display-style nil)
  '(js-indent-level 2)
+ '(lsp-rust-racer-completion nil)
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
