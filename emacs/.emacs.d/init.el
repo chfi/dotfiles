@@ -324,6 +324,9 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+(use-package mozc
+  :custom
+  (default-input-method "japanese-mozc"))
 
 (use-package nix-mode
   :defer t)
@@ -602,6 +605,11 @@
  "C-+" 'default-text-scale-increase
  "C--" 'default-text-scale-decrease
  "C-=" 'default-text-scale-reset)
+
+(general-define-key
+ :states 'insert
+ :keymaps 'global
+ "C-/" 'toggle-input-method)
 
 ;; ;; <C-f> as prefix for finding files
 ;; (general-define-key
