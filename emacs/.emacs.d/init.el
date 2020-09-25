@@ -24,7 +24,11 @@
 
 
 (straight-use-package 'org)
-(server-start)
+;; (server-start)
+
+;; Performance tuning for lsp-mode
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024))
 
 ;; ;;;;;;;;;;;;;;; Helper functions
 
@@ -1204,12 +1208,16 @@ buffer is not visiting a file."
   :config
   (custom-theme-set-faces
    'material
+   `(lsp-ui-doc-background
+     ((,t (:background
+           "#272a36"))))
    `(lsp-ui-sideline-code-action
      ((,t (:background
            "#29353a"
            :foreground
-           "#ffffff"
-           :box (:line-width 1 :color "#bbbbbb")))))
+           ;; "#ffffff"))))
+           "#ffffff"))))
+           ;; :box (:line-width 1 :color "#bbbbbb")))))
      `(ivy-current-match
      ((,t (:background
            "dim gray"
