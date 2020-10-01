@@ -106,7 +106,9 @@
 
 (use-package default-text-scale
   :init
-  (default-text-scale-mode))
+  (default-text-scale-mode)
+  :config
+  (default-text-scale-reset 127))
 
 (use-package dhall-mode
   :mode "\\.dhall\\'"
@@ -1113,68 +1115,80 @@ buffer is not visiting a file."
 
 ;; ;;;;;;;;;;;;; Themes
 
+(setq custom--inhibit-theme-enable nil)
+
 (use-package zenburn-theme
   :init
   (load-theme #'zenburn t t))
 
 
+(defun chfi/customize-material-theme ()
+  (let ((current-theme (car custom-enabled-themes)))
+    (when (eq current-theme 'material)
+      (custom-theme-set-faces
+       #'material
+       '(lsp-ui-doc-background
+         ((t (:background
+              "#272a36")))
+         t)
+       '(lsp-ui-sideline-code-action
+         ((t (:background
+               "#29353a"
+               :foreground
+               ;; "#ffffff"))))
+               "#ffffff")))
+         t)
+       ;; :box (:line-width 1 :color "#bbbbbb")))))
+       '(ivy-current-match
+         ((t (:background
+               "dim gray"
+               :underline ,t
+               :weight bold)))
+         t)
+       '(org-agenda-date
+         ((t (:background
+               "#364248"
+               :foreground "#4dd0e1"
+               :inverse-video nil
+               :box (:line-width 2 :color "#465258")
+               :overline nil
+               :underline nil
+               :slant normal
+               :weight normal
+               :height 1.0)))
+         t)
+       '(org-agenda-structure
+         ((t (:background
+               "#364248"
+               :foreground "#81d4fa"
+               :inverse-video nil
+               :box (:line-width 2 :color "#465258")
+               :overline nil
+               :underline nil
+               :slant normal
+               :weight normal
+               :height 1.0)))
+         t)
+       '(org-agenda-date-today
+         ((t (:inherit
+               org-agenda-date
+               :foreground
+               "#465258"
+               ;; :foreground "#268bd2"
+               :inverse-video t
+               ;; :box 1
+               :overline nil
+               :underline t
+               :weight bold)))
+         t)))))
+
+
 (use-package material-theme
+  :ensure t
   :init
   (load-theme #'material t t)
-  (load-theme #'material-light t t)
-  :config
-  (custom-theme-set-faces
-   'material
-   `(lsp-ui-doc-background
-     ((,t (:background
-           "#272a36"))))
-   `(lsp-ui-sideline-code-action
-     ((,t (:background
-           "#29353a"
-           :foreground
-           ;; "#ffffff"))))
-           "#ffffff"))))
-           ;; :box (:line-width 1 :color "#bbbbbb")))))
-     `(ivy-current-match
-     ((,t (:background
-           "dim gray"
-           :underline ,t
-           :weight bold))))
-   `(org-agenda-date
-     ((,t (:background
-           "#364248"
-           :foreground "#4dd0e1"
-           :inverse-video nil
-           :box (:line-width 2 :color "#465258")
-           :overline nil
-           :underline nil
-           :slant normal
-           :weight normal
-           :height 1.0))))
-   `(org-agenda-structure
-     ((,t (:background
-           "#364248"
-           :foreground "#81d4fa"
-           :inverse-video nil
-           :box (:line-width 2 :color "#465258")
-           :overline nil
-           :underline nil
-           :slant normal
-           :weight normal
-           :height 1.0))))
-   `(org-agenda-date-today
-     ((,t (:inherit
-           org-agenda-date
-           :foreground
-           "#465258"
-           ;; :foreground "#268bd2"
-           :inverse-video t
-           ;; :box 1
-           :overline nil
-           :underline t
-           :weight bold))))))
+  (load-theme #'material-light t t))
 
-;; material
 
 
 ;; (ivy-current-match ((t (:background "dim gray" :underline t :weight bold))))
@@ -1228,11 +1242,11 @@ buffer is not visiting a file."
   (chfi/disable-current-theme)
   (enable-theme (chfi/get-theme-by-time
                  (decoded-time-hour
-                  (decode-time (current-time))))))
+                  (decode-time (current-time)))))
+  (chfi/customize-material-theme))
 
 
 (chfi/set-theme-by-time)
-
 
 
 ;;;;;;;;;;;;; Customizer
@@ -1254,7 +1268,7 @@ buffer is not visiting a file."
  '(custom-safe-themes
    (quote
     ("afd761c9b0f52ac19764b99d7a4d871fc329f7392dfc6cd29710e8209c691477" "d4f8fcc20d4b44bf5796196dbeabec42078c2ddb16dcb6ec145a1c610e0842f3" "a1e99cb36d6235abbe426a0a96fc26c006306f6b9d2a64c2435363350a987b4c" default)))
- '(custom-theme-set-faces (quote material) t)
+ ;; '(custom-theme-set-faces (quote material) t)
  '(dhall-command "/home/christian/.local/bin/dhall")
  '(dhall-format-command "nil")
  '(dhall-format-options (quote ("--inplace")))
