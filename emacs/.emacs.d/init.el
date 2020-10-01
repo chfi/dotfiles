@@ -49,17 +49,7 @@
 ;; ;;;;;;;;;;;;;;; Macbook-specific configuration
 
 ;; Bunch of stuff better off in another file
-(setq jupiter-nix-hostname "jupiter-nix")
-;; (setq macbook-hostname "Christians-MacBook-Air.local")
-
-;; (load-user-file "scripts/macbook.el")
-
-;; Can use (when (is-macbook) ..) and (text-scale-set `mul`) to change font size on laptop
-;; (setq default-frame-alist '((font . "Source Code Pro-12")))
-
-;; (set-face-attribute 'default nil
-;;                     :family "Source Code Pro"
-;;                     :height 130 :weight 'normal)
+;; (setq jupiter-nix-hostname "jupiter-nix")
 
 
 (use-package exec-path-from-shell
@@ -174,7 +164,6 @@
   :after evil
   :config
   (setq-default evil-escape-key-sequence "uu"
-                ;; evil-escape-unordered-key-sequence t
                 evil-escape-delay 0.2)
   (evil-escape-mode))
 
@@ -220,31 +209,7 @@
   :defer t)
 
 (use-package hledger-mode
-  :mode "\\.hledger.journal\\'"
-  )
-
-;; (use-package attrap
-;;   ;; :defer t
-;;   :general
-;;   (:states '(normal insert)
-;;    :keymaps 'haskell-mode-map
-;;    "C-c s" 'attrap-attrap))
-
-;; (use-package dante
-;;   :defer t
-;;   :after haskell-mode
-;;   ;; :after attrap
-;;   :commands 'dante-mode
-;;   :init
-;;   (add-hook 'haskell-mode-hook 'dante-mode)
-;;   :config
-;;   (add-to-list 'company-backends 'dante-company)
-;;   (setq dante-repl-command-line '("stack" "repl"))
-;;   :general
-;;   (:states '(normal insert)
-;;    :keymaps 'haskell-mode-map
-;;    "C-c C-t" 'dante-type-at))
-;;    ;; "C-c s" 'dante-auto-fix))
+  :mode "\\.hledger.journal\\'")
 
 (use-package hydra)
 
@@ -278,9 +243,7 @@
 ;;   :mode (("\\.jq\\'" . jq-mode)))
 
 (use-package julia-mode
-  :defer t
-  )
-
+  :defer t)
 
 ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
 (setq lsp-keymap-prefix "s-l")
@@ -354,25 +317,6 @@
 (use-package nix-sandbox
   :defer t)
 
-;; (use-package lispy
-;;   :diminish lispy-mode
-;;   :config
-;;   (setq-default lispy-close-quotes-at-end-p t)
-;;   (add-hook 'emacs-lisp-mode-hook 'lispy-mode))
-  ;; (add-hook 'clojure-mode-hook 'lispy-mode))
-
-;; (use-package lispyville
-;;   :diminish lispyville-mode
-;;   :after lispy
-;;   :config
-;;   (add-hook 'lispy-mode-hook #'lispyville-mode)
-;;   (lispyville-set-key-theme
-;;    '(operators
-;;      ;; c-w
-;;      (escape insert)
-;;      (additional-movement normal visual motion)
-;;      slurp/barf-lispy)))
-
 (use-package psc-ide
   :defer t
   :diminish psc-ide-mode
@@ -385,8 +329,6 @@
    "M-ö" 'psc-ide-goto-definition)
   :init
   (add-hook 'purescript-mode-hook 'psc-ide-mode))
-  ;; :config
-  ;; (setq psc-ide-editor-mode t))
 
 (use-package purescript-mode
   :defer t
@@ -435,21 +377,6 @@
   :init
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
-;; (use-package smartparens
-;;   :init
-;;   (use-package evil-smartparens
-;;     :diminish evil-smartparens-mode
-;;     :init
-;;     (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
-;;   (require 'smartparens-config))
-
-
-;; (use-package lispy
-;;   :init
-;;   (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
-;;   (use-package lispyville
-;;     :init
-;;     (add-hook 'lispymode-hook 'lispyville-mode)))
 
 (use-package sparql-mode
   :init
@@ -477,22 +404,13 @@
   (zoom-mode t))
 
 
-;; (use-package nand2tetris
-;;   :defer t
-;;   :config
-;;   (use-package nand2tetris-assembler
-;;     :defer t)
-;;   (use-package company-nand2tetris
-;;     :defer t))
-
-
 ;; ;;;;;;;;;;;;; Keybindings
 
 
 (general-override-mode)
 
 
-;; (defvar agenda-leader "å")
+(defvar agenda-leader "å")
 
 ;; (known) Undefined keys to make use of (in all modes? probs not)
 ;; M-p
