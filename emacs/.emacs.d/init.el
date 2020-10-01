@@ -848,7 +848,6 @@
   ;; (setq org-src-preserve-indentation t)
 
 
-
   (mapc (apply-partially 'add-to-list 'org-src-lang-modes)
         '(("dhall"      . dhall-mode)
           ("purescript" . purescript-mode)
@@ -1292,7 +1291,30 @@ buffer is not visiting a file."
   (load-theme #'alect-black t t))
 
 
-(enable-theme 'material)
+(defun chfi/disable-current-theme ()
+  "Disable the currently loaded custom theme, if any."
+  (interactive)
+  (let ((current-theme (car custom-enabled-themes)))
+    (when current-theme
+      (disable-theme current-theme))))
+
+(defun chfi/get-theme-by-time (hour)
+  "Return 'material-light if HOUR is between 6 and 18, otherwise 'material."
+  (if (or (< hour 6) (> hour 18))
+    'material
+    'material-light))
+
+(defun chfi/set-theme-by-time ()
+  "Switch to theme material or material-light depending on time of day."
+  (interactive)
+  (chfi/disable-current-theme)
+  (enable-theme (chfi/get-theme-by-time
+                 (decoded-time-hour
+                  (decode-time (current-time))))))
+
+
+(chfi/set-theme-by-time)
+
 
 
 ;;;;;;;;;;;;; Customizer
