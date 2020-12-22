@@ -28,4 +28,5 @@ bindkey "\eOF" end-of-line
 
 # alias l='ls --color=yes -lah'
 alias l='exa -l'
+alias la='exa -la'
 alias s='du -hd1'

@@ -122,7 +122,7 @@ bindsym $mod+Shift+aring kill
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # bindsym $mod+e exec rofi -show run
-bindsym $mod+e exec "rofi -combi-modi window,drun -show combi -modi combi"
+bindsym $mod+e exec "rofi -combi-modi window,drun,run -show combi -modi combi"
 # bindsym $mod+e exec rofi -show drun
 
 # change focus
@@ -218,8 +218,8 @@ bindsym $mod+Shift+p restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+odiaeresis exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym XF86MonBrightnessUp exec "xbacklight +4"
-bindsym XF86MonBrightnessDown exec "xbacklight -4"
+bindsym XF86MonBrightnessUp exec "xbacklight +1"
+bindsym XF86MonBrightnessDown exec "xbacklight -1"
 
 
 # resize window (you can also use the mouse for that)

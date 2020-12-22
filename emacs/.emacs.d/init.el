@@ -23,6 +23,20 @@
 (setq straight-use-package-by-default t)
 
 
+;; (setq jupiter-nix-hostname "jupiter-nix")
+;; (setq macbook-hostname "Christians-MacBook-Air.local")
+
+;; (load-user-file "scripts/macbook.el")
+
+;; Can use (when (is-macbook) ..) and (text-scale-set `mul`) to change font size on laptop
+;; (setq default-frame-alist '((font . "Source Code Pro-12")))
+
+;; (set-face-attribute 'default nil
+;;                     :family "Source Code Pro"
+;;                     :height 130 :weight 'normal)
+;; (setq jupiter-nix-hostname "jupiter-nix")
+
+
 (straight-use-package 'org)
 ;; (server-start)
 
@@ -248,14 +262,16 @@
   :defer t)
 
 ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-(setq lsp-keymap-prefix "s-l")
+(setq lsp-keymap-prefix "C-l")
 
 (use-package lsp-mode
     :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
             (rust-mode . lsp)
             ;; if you want which-key integration
             (lsp-mode . lsp-enable-which-key-integration))
-    :commands lsp)
+    :commands lsp
+    :config
+    (setq lsp-signature-doc-lines 7))
 
 
 
@@ -766,6 +782,7 @@
 
   ;; (setq org-src-tab-acts-natively t)
   ;; (setq org-src-preserve-indentation t)
+  (setq org-edit-src-content-indentation 0)
 
 
   (mapc (apply-partially 'add-to-list 'org-src-lang-modes)
@@ -1232,7 +1249,7 @@ buffer is not visiting a file."
 
 (defun chfi/get-theme-by-time (hour)
   "Return 'material-light if HOUR is between 6 and 18, otherwise 'material."
-  (if (or (< hour 6) (> hour 18))
+  (if (or (< hour 6) (> hour 17))
     'material
     'material-light))
 
@@ -1259,49 +1276,45 @@ buffer is not visiting a file."
    [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
- '(avy-keys (quote (97 111 101 117 105 104 116 110 115)))
- '(browse-url-browser-function (quote browse-url-chromium))
+ '(avy-keys '(97 111 101 117 105 104 116 110 115))
+ '(browse-url-browser-function 'browse-url-chromium)
  '(browse-url-chromium-program "brave-browser")
  '(cider-show-error-buffer nil)
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
  '(custom-safe-themes
-   (quote
-    ("afd761c9b0f52ac19764b99d7a4d871fc329f7392dfc6cd29710e8209c691477" "d4f8fcc20d4b44bf5796196dbeabec42078c2ddb16dcb6ec145a1c610e0842f3" "a1e99cb36d6235abbe426a0a96fc26c006306f6b9d2a64c2435363350a987b4c" default)))
- ;; '(custom-theme-set-faces (quote material) t)
+   '("afd761c9b0f52ac19764b99d7a4d871fc329f7392dfc6cd29710e8209c691477" "d4f8fcc20d4b44bf5796196dbeabec42078c2ddb16dcb6ec145a1c610e0842f3" "a1e99cb36d6235abbe426a0a96fc26c006306f6b9d2a64c2435363350a987b4c" default))
  '(dhall-command "/home/christian/.local/bin/dhall")
  '(dhall-format-command "nil")
- '(dhall-format-options (quote ("--inplace")))
+ '(dhall-format-options '("--inplace"))
  '(fci-rule-color "#383838")
  '(hl-sexp-background-color "#1c1f26")
  '(ivy-display-style nil)
  '(js-indent-level 2)
  '(lsp-rust-racer-completion nil)
+ '(magit-refresh-status-buffer nil)
  '(nrepl-message-colors
-   (quote
-    ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
- '(org-agenda-clockreport-parameter-plist (quote (:link t :maxlevel 2 :fileskip0 t)))
+   '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
+ '(org-agenda-clockreport-parameter-plist '(:link t :maxlevel 2 :fileskip0 t))
  '(org-agenda-files
-   (quote
-    ("~/Sync/org/work/phd.org" "~/Sync/org/work/uthsc.org" "~/Sync/org/projects.org" "~/Sync/org/news.org" "~/Sync/org/notes.org" "/home/christian/Sync/org/genome-browser.org" "~/Sync/org/common.org" "/home/christian/Sync/org/todo.org" "~/Sync/org/journal.org")))
- '(org-roam-completion-system (quote ivy))
+   '("~/Sync/org/work/phd.org" "~/Sync/org/work/uthsc.org" "~/Sync/org/projects.org" "~/Sync/org/news.org" "~/Sync/org/notes.org" "/home/christian/Sync/org/genome-browser.org" "~/Sync/org/common.org" "/home/christian/Sync/org/todo.org" "~/Sync/org/journal.org"))
+ '(org-roam-completion-system 'ivy)
  '(org-roam-directory "~/Sync/org/roam/")
- '(org-roam-graph-exclude-matcher (quote ("private")))
- '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
+ '(org-roam-graph-exclude-matcher '("private"))
+ '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
+ '(rust-format-on-save t)
  '(safe-local-variable-values
-   (quote
-    ((haskell-process-use-ghci . t)
+   '((haskell-process-use-ghci . t)
      (haskell-indent-spaces . 4)
      (org-remove-highlights-with-change)
      (eval let nil
            (org-babel-goto-named-src-block "setup-export-class")
            (org-babel-execute-src-block))
      (bibtex-completion-cite-prompt-for-optional-arguments)
-     (bibtex-completion-bibliography . "./bibliography.bib"))))
+     (bibtex-completion-bibliography . "./bibliography.bib")))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
-   (quote
-    ((20 . "#BC8383")
+   '((20 . "#BC8383")
      (40 . "#CC9393")
      (60 . "#DFAF8F")
      (80 . "#D0BF8F")
@@ -1318,7 +1331,7 @@ buffer is not visiting a file."
      (300 . "#7CB8BB")
      (320 . "#8CD0D3")
      (340 . "#94BFF3")
-     (360 . "#DC8CC3"))))
+     (360 . "#DC8CC3")))
  '(vc-annotate-very-old-color "#DC8CC3"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
