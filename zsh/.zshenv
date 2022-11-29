@@ -4,20 +4,23 @@
 # export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/lib:"$NIX_LINK/lib/pkgconfig"
 
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/opt/node/bin:$PATH"
 export PATH="$HOME/.npm/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # export PATH="/home/christian/.config/guix/current/bin${PATH:+:}$PATH"
 GUIX_PROFILE="$HOME/.guix-profile"
-. "$GUIX_PROFILE/etc/profile"
+# . "$GUIX_PROFILE/etc/profile"
 
 NIX_PROFILE="$HOME/.nix-profile"
-. "$NIX_PROFILE/etc/profile.d/nix.sh"
+# . "$NIX_PROFILE/etc/profile.d/nix.sh"
 
 # guix paths
-export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
-export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs"
-export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
+
+# export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
+# export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs"
+# export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
+
 # export GIT_SSL_CAINFO="$SSL_CERT_FILE"
 
 # Use emacs for editing everything, with emacs daemon

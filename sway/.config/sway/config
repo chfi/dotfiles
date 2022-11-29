@@ -20,7 +20,6 @@ font pango:DejaVu Sans Mono 11
 
 default_border normal 5
 
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -174,21 +173,37 @@ bindsym $mod+p mode "resize"
 # bindsym ISO_Group_Latch exec "grim -g '$(slurp)'"
 # bindsym --no-repeat ISO_Group_Latch exec "grim -g '$(slurp)'"
 
-bindsym --no-repeat ISO_Group_Latch exec "slurp | grim -g -"
+bindsym --no-repeat ISO_Group_Latch exec "slurp | grim -c -g -"
+bindsym --no-repeat Ctrl+ISO_Group_Latch exec "grim -c"
 
 # set delay and rate for key repetition
 input type:keyboard repeat_delay 198
 input type:keyboard repeat_rate 50
+input type:keyboard xkb_layout se
+input type:keyboard xkb_variant svorakcode
 
 # only use monitor, disable TV output
 output "Technical Concepts Ltd 50S425 0x00000000" disable
 
 # enable FreeSync
 output "Acer Technologies SB240Y 0x00009E85" adaptive_sync on
+output "Goldstar Company Ltd LG HDR QHD 209NTLEC6544" adaptive_sync on
+
+output DP-1 pos 0 0
+
+# seat seat0 xcursor_theme breeze_cursors
+# seat seat0 xcursor_theme "Breeze"
+# seat seat0 xcursor_theme Breeze
+# seat seat0 xcursor_theme breeze 24
+# seat seat0 xcursor_theme Breeze_cursors 16
+# seat seat0 xcursor_theme default 16
+# seat seat0 hide_cursor when-typing enable
+# seat - xcursor_theme Breeze
 
 # autostart programs
-exec mako
-exec megasync
+# exec mako
+exec "mako --default-timeout 10000"
+# exec megasync
 # exec /opt/Mullvad\ VPN/mullvad-vpn
 
 # seat - hide_cursor

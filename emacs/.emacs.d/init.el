@@ -74,6 +74,10 @@
 
 (add-to-list 'exec-path "/home/christian/.local/bin")
 
+(add-to-list 'auto-mode-alist '("\\.comp\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.tese\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.tesc\\'" . glsl-mode))
+
 ;; ;;;;;;;;;;;;;;; Packages/user
 
 (load-file (expand-file-name "dhall/ob-dhall.el" user-init-dir))
@@ -266,9 +270,9 @@
 
 (use-package lsp-mode
     :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-            (rust-mode . lsp)
+            (rust-mode . lsp))
             ;; if you want which-key integration
-            (lsp-mode . lsp-enable-which-key-integration))
+            ;; (lsp-mode . lsp-enable-which-key-integration))
     :commands lsp
     :config
     (setq lsp-signature-doc-lines 7))
